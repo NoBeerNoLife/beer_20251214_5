@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>日本のビールレストラン TOP10</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">🍺</div>
+      <div>
+        <h1>日本のビールレストラン</h1>
+        <p class="sub">毎月更新：ポジティブな声 × 売上でランキング</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-link is-active" href="./index.html">TOP10</a>
+      <a class="nav-link" href="./list.html">ランキング一覧</a>
+      <button id="monthBtn" class="btn btn-ghost" type="button" title="表示月を切り替え">
+        表示月：<span id="monthLabel"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-media" role="img" aria-label="若い日本の男女がビールで乾杯している明るい写真">
+        <!-- assets/hero.jpg を置くと背景に表示されます -->
+      </div>
+      <div class="hero-body">
+        <h2>今月のTOP10</h2>
+        <p>
+          「ポジティブな声（今月）」が多い順、同数なら「売上（今月）」が高い順で表示します。<br/>
+          気になるお店は、そのまま予約エージェントで予約ページへ。
+        </p>
+        <div class="hero-actions">
+          <a class="btn" href="./list.html">11位以下も見る</a>
+          <button class="btn btn-outline" type="button" id="openAgentFromHero">予約エージェントを開く</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h3>TOP10 店舗</h3>
+        <div class="hint">並び順：ポジティブ（降順）→ 売上（降順）</div>
+      </div>
+
+      <div id="top10Grid" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- Reservation Agent Modal -->
+  <div id="agentModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="予約エージェント">
+      <div class="modal-head">
+        <h3>予約エージェント</h3>
+        <button class="icon-btn" type="button" data-close="1" aria-label="閉じる">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="muted">
+          店舗を選んで日時・人数を入れると、予約ページを開きつつ、予約用メッセージも作ります（コピペ用）。
+        </p>
+
+        <div class="form">
+          <label>
+            店舗
+            <select id="agentShopSelect"></select>
+          </label>
+
+          <div class="form-row">
+            <label>
+              日付
+              <input id="agentDate" type="date" />
+            </label>
+            <label>
+              時間
+              <input id="agentTime" type="time" />
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              人数
+              <input id="agentPeople" type="number" min="1" value="2" />
+            </label>
+            <label>
+              お名前（任意）
+              <input id="agentName" type="text" placeholder="例：大山" />
+            </label>
+          </div>
+
+          <label>
+            要望（任意）
+            <input id="agentNotes" type="text" placeholder="例：カウンター希望、静かな席希望 など" />
+          </label>
+
+          <div class="form-actions">
+            <button id="agentMakeMsg" class="btn btn-outline" type="button">メッセージ生成</button>
+            <button id="agentGoReserve" class="btn" type="button">予約ページを開く</button>
+          </div>
+
+          <div class="output">
+            <div class="output-head">
+              <strong>予約メッセージ（コピペ用）</strong>
+              <button id="agentCopy" class="btn btn-ghost" type="button">コピー</button>
+            </div>
+            <textarea id="agentMessage" rows="6" placeholder="ここに生成されます"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <small>© Beer Restaurants Japan</small>
+      <small class="muted">※本サイトはデモ。店舗データはサンプルです。</small>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
